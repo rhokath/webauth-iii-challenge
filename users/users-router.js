@@ -11,4 +11,15 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/department', restricted, (req,res)=> {
+    const user_department = req.user.department
+    Users.findBy({department: user_department})
+        .then(users => {
+            res.json(users)
+        })
+        .catch(err => res.send(err))
+   
+   
+})
+
 module.exports = router;
